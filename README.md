@@ -48,7 +48,7 @@ To make your project as portable as possible, everything you need is in the `app
 - Launch: `eval "$(ssh-agent -s)"`
 - Launch: `ssh-add ~/.ssh/id_ed25519`
 - Start a coding session ☕️
-
+k
 ## Container terminal
 To open this kind of terminal, two possibilities:
 

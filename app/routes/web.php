@@ -1,6 +1,11 @@
 <?php
 
+
+namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PagesController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +21,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::view('/inscription', 'inscription');
+// Route::post('/enregistrer', 'UserController')->name('user.getForm');
+Route::post('/inscription', [UserController::class, 'getForm'])->name('user.getForm');
+
+// Route::post('/enregistrer', 'UserController@getForm')->name('user.getForm');
+

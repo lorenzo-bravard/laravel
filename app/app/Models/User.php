@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Relations\HasMany; 
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+
 
 class User extends Authenticatable
 {
@@ -42,4 +45,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function Password(): HasMany{
+        return $this->HasMany(Password::class);
+    }
+    public function Teams(): BelongsToMany{
+        return $this->BelongsToMany(Teams::class);
+    }
+    // $utilisateur = User::where('email', $email)->first();
+    // return view('utilisateur', [
+    //     'utilisateur' => $utilisateur,
+    // ])
 }

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Password;
+use crypt;
 
  
 class PwdController extends Controller
@@ -37,14 +38,23 @@ class PwdController extends Controller
 
 
         $user_id = Auth::user()->id;
-        $pwd = new Password;
-        $pwd->site = $site;
-        $pwd->login = $login;
-        $pwd->password = $mdp;
-        $pwd->user_id = $user_id;
-        $pwd->save();
+            $pwd = new Password;
+            $pwd->site = $site;
+            $pwd->login = $login;
+            $pwd->password = $mdp;
+            $pwd->user_id = $user_id;
+            $pwd->save();
         // return redirect("/welcome")->withErrors($validator);
         // return redirect('welcome')->route('welcome');
         return redirect('/');
     }
+
+    public function editPassword(Request $request){
+    
+        $user_id = Auth::user()->id;
+        $info = Password::where('user_id', $user_id)->get();
+            // dd($info); 
+        return redirect('/list');
+    }
+
 }

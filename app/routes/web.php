@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PwdController;
+use App\Http\Controllers\ListController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,27 @@ Route::get('/form', function () {
     return view('form');
 });
 
+Route::get('/editPwd', function () {
+    return view('editPwd');
+});
+Route::get('/form', function () {
+    return view('form');
+});
+
+
+Route::get('/list', function () {
+    return view('list');
+});
+
+Route::get('/list', [
+    ListController::class, 'getInfo'
+])->name('ListController');
+
+
 Route::post('/PwdController', [
     PwdController::class, 'form'
 ])->name('PwdController');
+
+Route::get('/edit', [
+    PwdController::class, 'editPassword'
+])->name('edit');

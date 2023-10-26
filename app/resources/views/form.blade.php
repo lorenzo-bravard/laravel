@@ -40,8 +40,6 @@
             <div class="mt-16">
                 <form action="{{route('PwdController')}}" method="post">
                 @csrf
-                @method("POST")
-
                     <label for="fname">URL du site</label><br>
                     <input type="text" id="url" name="url" class="@error('url') is-invalid @enderror"><br>
                     <input type="text" id="login" name="login"><br>

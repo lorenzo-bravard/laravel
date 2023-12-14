@@ -1,15 +1,13 @@
 <?php
  
-namespace App\Http\Controllers;
- 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Auth;
-use App\Models\Teams;
-use App\Models\User;
-use crypt;
+ namespace App\Http\Controllers;
+
+ use App\Http\Controllers\Controller;
+ use Illuminate\Http\Request;
+ use Illuminate\Support\Facades\Validator;
+ use Illuminate\Support\Facades\Auth;
+ use App\Models\Teams;
+ use App\Models\User;
 
  
 class TeamController extends Controller
@@ -26,12 +24,7 @@ class TeamController extends Controller
             return redirect('/')->withErrors($validator);
         }
 
-        //Save the data to the database
-        $name = $request->input('name');
-        // $data = array('Name' => $name);
-        // $json = json_encode($data);
-        // Storage::put(time().'.json', $json);
-
+        $name = $_POST["name"];
 
         $user_id = Auth::user()->id;
             $team = new Teams;
@@ -41,8 +34,8 @@ class TeamController extends Controller
         // return redirect('welcome')->route('welcome');
         
         $user = Auth::user();
-
-        $team->belongsToMany(User::class, 'user_team', 'team_id', 'user_id')->attach($user->id);
+        $user->teams()->save($team);
+        // $team->belongsToMany(User::class, 'user_team', 'team_id', 'user_id')->attach($user->id);
         return redirect('/');
     }
 

@@ -41,6 +41,10 @@ Route::get('/edit', function () {
     return view('editPwd');
 });
 
+Route::get('/addTeam', function () {
+    return view('addTeam');
+});
+
 Route::get('/team', function () {
     return view('team');
 });
@@ -60,15 +64,15 @@ Route::get('/list', [
 ])->name('ListController');
 
 
-// Route::post('/PwdController', [
-//     PwdController::class, 'form'
-// ])->name('PwdController');
+Route::post('/PwdController', [
+    PwdController::class, 'form'
+])->name('PwdController');
 
-Route::get('/TeamController', [
+Route::post('/TeamController', [
     TeamController::class, 'formTeam'
 ])->name('TeamController');
 
 
-Route::get('/PwdController', [
+Route::post('/PwdController', [
     PwdController::class, 'editPassword'
 ])->name('PwdController');

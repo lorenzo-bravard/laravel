@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Password extends Model
 {
+    protected $mdp = ['password'];
     use HasFactory;
 
     

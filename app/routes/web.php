@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PwdController;
 use App\Http\Controllers\ListController;
+use App\Http\Controllers\TeamController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,8 +38,14 @@ Route::get('/form', function () {
 });
 
 Route::get('/edit', function () {
-    return view('edit');
+    return view('editPwd');
 });
+
+Route::get('/team', function () {
+    return view('team');
+});
+
+
 Route::get('/form', function () {
     return view('form');
 });
@@ -53,9 +60,14 @@ Route::get('/list', [
 ])->name('ListController');
 
 
-Route::post('/PwdController', [
-    PwdController::class, 'form'
-])->name('PwdController');
+// Route::post('/PwdController', [
+//     PwdController::class, 'form'
+// ])->name('PwdController');
+
+Route::get('/TeamController', [
+    TeamController::class, 'formTeam'
+])->name('TeamController');
+
 
 Route::get('/PwdController', [
     PwdController::class, 'editPassword'

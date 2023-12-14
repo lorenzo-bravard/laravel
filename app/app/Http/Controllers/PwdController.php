@@ -53,15 +53,24 @@ class PwdController extends Controller
     
         $user_id = Auth::user()->id;
         $info = Password::where('user_id', $user_id)->first();
-        dd($info);
+        
         $rules = [
             'mdp' => 'required|string',
         ];
-        
+    
         $mdp = $request->input('mdp');
-        $info->update(['password' => $mdp ]);
-
+    
+        // Assurez-vous que le champ 'mdp' est présent dans la requête avant d'accéder à sa valeur
+        if (!$mdp) {
+            // Gérez l'erreur ici, redirigez peut-être l'utilisateur avec un message d'erreur
+        }
+    
+        // Mettez à jour chaque attribut individuellement
+        $info->password = $mdp;
+        $info->save();
+    
         return redirect('/list');
     }
+    
 
 }

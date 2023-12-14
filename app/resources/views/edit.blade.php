@@ -16,7 +16,7 @@
     @auth
     <body class="antialiased">
                     <h1>modification du mot de passe</h1>
-                    <form action="{{route('edit')}}" method="get">
+                    <form action="{{route('PwdController')}}" method="get">
                             <label for="fname">Nouveau mot de passe</label><br>
                             <input type="text" id="mdp" name="mdp"><br><br>
                             <input type="submit" value="Submit">
@@ -33,7 +33,7 @@
                         </div>
                     @endif
                         </form>
-                    {{}}
+                  
 
     </body>
     @endauth

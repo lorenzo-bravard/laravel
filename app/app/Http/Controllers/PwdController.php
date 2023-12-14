@@ -52,8 +52,15 @@ class PwdController extends Controller
     public function editPassword(Request $request){
     
         $user_id = Auth::user()->id;
-        $info = Password::where('user_id', $user_id)->get();
-            // dd($info); 
+        $info = Password::where('user_id', $user_id)->first();
+        dd($info);
+        $rules = [
+            'mdp' => 'required|string',
+        ];
+        
+        $mdp = $request->input('mdp');
+        $info->update(['password' => $mdp ]);
+
         return redirect('/list');
     }
 

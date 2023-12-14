@@ -36,8 +36,8 @@ Route::get('/form', function () {
     return view('form');
 });
 
-Route::get('/editPwd', function () {
-    return view('editPwd');
+Route::get('/edit', function () {
+    return view('edit');
 });
 Route::get('/form', function () {
     return view('form');
@@ -57,6 +57,6 @@ Route::post('/PwdController', [
     PwdController::class, 'form'
 ])->name('PwdController');
 
-Route::get('/edit', [
+Route::get('/PwdController', [
     PwdController::class, 'editPassword'
-])->name('edit');
+])->name('PwdController');

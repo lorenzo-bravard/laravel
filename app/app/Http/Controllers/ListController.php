@@ -21,9 +21,9 @@ class ListController extends Controller
         $user = Auth::user();
 
         // Récupérez les équipes auxquelles l'utilisateur appartient directement à partir de la table pivot
-        $teams = Teams::join('user_team', 'teams.id', '=', 'user_team.team_id')
-            ->where('user_team.user_id', $user_id)
-            ->get();
+        // $teams = Teams::join('user_team', 'teams.id', '=', 'user_team.team_id')
+        //     ->where('user_team.user_id', $user_id)
+        //     ->get();
 
 
             // $usersNotInSameTeam = User::whereDoesntHave('teams', function ($query) use ($user_id) {
@@ -34,18 +34,11 @@ class ListController extends Controller
         
         // Récupérez les informations de mot de passe de l'utilisateur
         $info = Password::where('user_id', $user_id)->get();
-
-        // Vous pouvez faire quelque chose avec les informations récupérées
-        // ...
-
-        return view('list', compact('info', 'teams'));
-
-        $info = Password::where('user_id', $user_id)->get();
-
+        $teams = $user->teams;
         
 
             // dd($info);
-        return view('list', compact('info', 'teams', 'usersNotInSameTeam'));
+        return view('list', compact('info', 'teams'));
 
     }
 }

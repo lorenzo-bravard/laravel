@@ -58,7 +58,7 @@ class PwdController extends Controller
             'mdp' => 'required|string',
         ];
     
-        $mdp = $request->input('mdp');
+        $mdp = $request->input('mdpEdit');
     
         // Assurez-vous que le champ 'mdp' est présent dans la requête avant d'accéder à sa valeur
         if (!$mdp) {

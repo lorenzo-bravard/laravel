@@ -16,45 +16,27 @@
     @auth
     <body class="antialiased">
                     <h1>Ajouter quelqu'un à la team</h1>
-                    <form action="{{route('TeamController')}}" method="post">
-                            @csrf
-
-                            
-                            <label>
-                                <input type="checkbox" name="option1" value="1">
-                                Option 1
-                            </label>
-                            <br>
-                    
-                            <label>
-                                <input type="checkbox" name="option2" value="2">
-                                Option 2
-                            </label>
-                            <br>
-                    
-                            <label>
-                                <input type="checkbox" name="option3" value="3">
-                                Option 3
-                            </label>
-                            <br>
-                    
-                            <!-- Ajoutez autant d'options que nécessaire -->
-                    
-                            <br>
-                            <bu
-                            @if ($errors->any())
-        
-        
-        
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-                        </form>
+                    <form action="{{ route('ajoutUser') }}" method="post">
+                        @csrf
+                        <input type="hidden" name="team_id" value="{{ $team_id }}">
+                        <label for="userName">Nom de l'utilisateur :</label>
+                        
+                        <input type="text" name="userName" id="userName" autocomplete="off">
+                        <br>
+                        <input type="submit" value="Submit">
+                        
+                        <br>
+                        
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                    </form>
                   
 
     </body>

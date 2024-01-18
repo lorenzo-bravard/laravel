@@ -34,8 +34,7 @@
                         </div>
                     @endif
                         </form>
-                  
-
+                       
     </body>
     @endauth
 </html>

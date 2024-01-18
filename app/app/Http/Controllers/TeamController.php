@@ -39,6 +39,41 @@ class TeamController extends Controller
         return redirect('/');
     }
 
+    public function formAddUser(Request $request)
+{
+    $userName = $request->input('userName');
+    $team_id = $request->input('team_id');
+    $user = User::where('name', $userName)->first();
+
+    if ($user) {
+        // Vérifiez si la relation n'existe pas déjà
+        $existingRelation = $user->teams()->where('teams_id', $team_id)->exists();
+
+        if (!$existingRelation) {
+            // Ajoutez l'utilisateur à l'équipe
+            $user->teams()->attach($team_id);
+
+            // Autre logique si nécessaire
+            return redirect('/')->with('success', 'Utilisateur ajouté à l\'équipe avec succès.');
+        } else {
+            // La relation existe déjà
+            return redirect('/')->with('info', 'L\'utilisateur est déjà dans cette équipe.');
+        }
+    } else {
+        return redirect('/')->with('error', 'Utilisateur non trouvé.');
+    }
+}
+
+
+    
+
+    public function teamMemory(Request $request)
+    {
+        $team_id = $request->input('teamId');       
+            // dd($team_id);
+        return view('addTeam', compact('team_id'));
+    }
+
 
     
 

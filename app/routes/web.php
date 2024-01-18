@@ -64,9 +64,9 @@ Route::get('/list', [
 ])->name('ListController');
 
 
-Route::post('/PwdController', [
+Route::post('/PwdCtrl', [
     PwdController::class, 'form'
-])->name('PwdController');
+])->name('PwdCtrl');
 
 Route::post('/TeamController', [
     TeamController::class, 'formTeam'
@@ -76,3 +76,13 @@ Route::post('/TeamController', [
 Route::post('/PwdController', [
     PwdController::class, 'editPassword'
 ])->name('PwdController');
+
+Route::post('/ajoutUser', [
+    TeamController::class, 'formAddUser'
+])->name('ajoutUser');
+
+Route::post('/keepTeam', [
+    TeamController::class, 'teamMemory'
+])->name('keepTeam');
+
+

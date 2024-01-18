@@ -18,7 +18,7 @@
                     <h1>modification du mot de passe</h1>
                     <form action="{{route('PwdController')}}" method="get">
                             <label for="fname">Nouveau mot de passe</label><br>
-                            <input type="text" id="mdp" name="mdp"><br><br>
+                            <input type="text" id="mdpEdit" name="mdpEdit"><br><br>
                             <input type="submit" value="Submit">
                             @if ($errors->any())
         

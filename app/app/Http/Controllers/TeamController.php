@@ -8,6 +8,7 @@
  use Illuminate\Support\Facades\Auth;
  use App\Models\Teams;
  use App\Models\User;
+ use App\Notifications\TeamNotification;
 
  
 class TeamController extends Controller
@@ -43,17 +44,37 @@ class TeamController extends Controller
 {
     $userName = $request->input('userName');
     $team_id = $request->input('team_id');
-    $user = User::where('name', $userName)->first();
+    $userGlobal = User::all();
+    $users = User::where('name', $userName)->first();
 
-    if ($user) {
+    if ($users) {
         // Vérifiez si la relation n'existe pas déjà
-        $existingRelation = $user->teams()->where('teams_id', $team_id)->exists();
+        $existingRelation = $users->teams()->where('teams_id', $team_id)->exists();
 
         if (!$existingRelation) {
             // Ajoutez l'utilisateur à l'équipe
-            $user->teams()->attach($team_id);
-
+           
+            // dd($userGlobal);
+            // dd($users);
             // Autre logique si nécessaire
+            // $teamMembers = $userGlobal->teams()->where('teams_id', $team_id)->get('user_id');
+// $teamMembers = Team::find($team_id)->users()->pluck('id');
+
+        $userTeam = User::whereHas('teams', function ($query) use ($team_id) {
+            $query->where('teams_id', $team_id);
+        })->get();
+        // dd($userTeam);
+            // $teamMembers = $userGlobal->teams()->where('teams_id', $team_id)->select('user_id')->get();
+            // $teamMembers = Teams::where('id', $team_id);
+            // $usersInTeam = $teamMembers->user;
+            // dd($teamMembers);
+
+            foreach ($userTeam as $teamMember) {
+                
+                    $teamMember->notify(new TeamNotification($userTeam, $team_id));
+                
+            }
+            $users->teams()->attach($team_id);
             return redirect('/')->with('success', 'Utilisateur ajouté à l\'équipe avec succès.');
         } else {
             // La relation existe déjà

@@ -9,7 +9,7 @@
 @task('update-depandencies', ['on' => 'web'])
     cd lorenzo-bravard.dhonnabhain.me
     cd app
-    composer install 
+    composer update
     npm install
     npm run build
 @endtask

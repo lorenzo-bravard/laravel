@@ -19,7 +19,7 @@
                     <form action="{{route('editPwd')}}" method="post">
                         @csrf
                             <label for="fname">{{__('edit-pwd.new')}}</label><br>
-                            <input type="text" id="mdpEdit" name="mdpEdit"><br><br>
+                            <input type="text" id="mdpEdit" name="mdpEdit" required><br><br>
                             <input type="submit" value="{{__('edit-pwd.submit')}}">
                             @if ($errors->any())
 

@@ -19,7 +19,7 @@
                     <form action="{{route('TeamController')}}" method="post">
                         @csrf
                             <label for="fname">{{__('create-team.new')}}</label><br>
-                            <input type="name" id="name" name="name"><br><br>
+                            <input type="name" id="name" name="name" required><br><br>
                             <input type="submit" value="{{__('create-team.submit')}}">
                             @if ($errors->any())
         

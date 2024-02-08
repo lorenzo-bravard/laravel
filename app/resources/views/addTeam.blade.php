@@ -21,7 +21,7 @@
                         <input type="hidden" name="team_id" value="{{ $team_id }}">
                         <label for="userName">{{__('add-team.name')}}</label>
                         
-                        <input type="text" name="userName" id="userName" autocomplete="off">
+                        <input type="text" name="userName" id="userName" autocomplete="off" required>
                         <br>
                         <input type="submit" value="{{__('add-team.submit')}}">
                         

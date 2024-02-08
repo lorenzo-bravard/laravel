@@ -24,11 +24,11 @@
                 <form action="{{route('PwdCtrl')}}" method="post">
                 @csrf
                     <label for="url">{{__('add-pwd.url')}}</label><br>
-                    <input type="text" id="url" name="url" class="@error('url') is-invalid @enderror"><br>
+                    <input type="text" id="url" name="url" class="@error('url') is-invalid @enderror" required><br>
                     <label for="login">{{__('add-pwd.mail')}}</label><br>
-                    <input type="text" id="login" name="login"><br>
+                    <input type="text" id="login" name="login" required><br>
                     <label for="mdp">{{__('add-pwd.pwd')}}</label><br>
-                    <input type="text" id="mdp" name="mdp"><br><br>
+                    <input type="text" id="mdp" name="mdp" required><br><br>
                     <input type="submit" value="{{__('add-pwd.submit')}}">
                     @if ($errors->any())
 

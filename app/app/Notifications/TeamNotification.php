@@ -14,9 +14,13 @@ class TeamNotification extends Notification
     /**
      * Create a new notification instance.
      */
-    public function __construct()
+    public function __construct($userTeam, $team_id, $users, $user,$dateEtHeure)
     {
-        //
+        $this->userTeam = $userTeam;
+        $this->team_id = $team_id;
+        $this->users = $users;
+        $this->user = $user;
+        $this->dateEtHeure = $dateEtHeure;
     }
 
     /**
@@ -26,7 +30,7 @@ class TeamNotification extends Notification
      */
     public function via(object $notifiable): array
     {
-        return ['mail'];
+        return ['mail', 'database'];
     }
 
     /**
@@ -35,11 +39,11 @@ class TeamNotification extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-            ->line('You have been added to a team.')
-            ->action('View Team', url('/teams'))
-            ->line('Thank you for using our application!');
+            ->line($this->users->name."".__('notifications.add_name'))
+            ->line(__('notifications.who_add')."".$this->user->name)
+            ->line(__('notifications.hours')."".$this->dateEtHeure);
     }
-
+    
     /**
      * Get the array representation of the notification.
      *
@@ -48,7 +52,9 @@ class TeamNotification extends Notification
     public function toArray(object $notifiable): array
     {
         return [
-            //
+            "nameadd" => $this->users->name,   
+            "whoadd" => $this->user->name,
+            "created_at" => $this->dateEtHeure
         ];
     }
 }

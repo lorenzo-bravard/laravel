@@ -15,15 +15,15 @@
     </head>
     @auth
     <body class="antialiased">
-                    <h1>Ajouter quelqu'un à la team</h1>
+                    <h1>{{__('add-team.add')}}</h1>
                     <form action="{{ route('ajoutUser') }}" method="post">
                         @csrf
                         <input type="hidden" name="team_id" value="{{ $team_id }}">
-                        <label for="userName">Nom de l'utilisateur :</label>
+                        <label for="userName">{{__('add-team.name')}}</label>
                         
                         <input type="text" name="userName" id="userName" autocomplete="off">
                         <br>
-                        <input type="submit" value="Submit">
+                        <input type="submit" value="{{__('add-team.submit')}}">
                         
                         <br>
                         

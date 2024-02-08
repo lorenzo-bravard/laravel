@@ -46,7 +46,7 @@ class PwdController extends Controller
             $pwd->save();
         // return redirect("/welcome")->withErrors($validator);
         // return redirect('welcome')->route('welcome');
-        return redirect('/');
+        return view('dashboard');
     }
 
     public function editPassword(Request $request){
@@ -69,7 +69,7 @@ class PwdController extends Controller
         $info->password = $mdp;
         $info->save();
     
-        return redirect('/list');
+        return view('dashboard');
     }
     
 

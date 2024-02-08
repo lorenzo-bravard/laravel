@@ -35,10 +35,11 @@ class ListController extends Controller
         // Récupérez les informations de mot de passe de l'utilisateur
         $info = Password::where('user_id', $user_id)->get();
         $teams = $user->teams;
+
         
 
-            // dd($info);
-        return view('list', compact('info', 'teams'));
+        // return view('list', compact('info', 'teams'));
+        return view('list', ['info' => $info, 'teams'=> $teams]);
 
     }
 }

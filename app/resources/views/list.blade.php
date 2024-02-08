@@ -15,33 +15,25 @@
     </head>
     @auth
     <body class="antialiased">
-                    <h1>Liste des mots de passe</h1>
+                    <h1>{{__('info.mdp-list')}}</h1>
                     @foreach ($info as $info)
-                        <p>Site : {{ $info->site }}</p><br>
-                        <p>Login : {{ $info->login }}</p><br>
+                        <p>{{__('info.site')}}{{ $info->site }}</p>
+                        <p>{{__('info.login')}}{{ $info->login }}</p>
                         <a href="edit" class="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-gray-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500">
-                        Password : {{ $info->password }}</a><br>
+                        {{__('info.pwd')}}{{ $info->password }}</a><br>
                     @endforeach
 
 
                  <div>
-                    <h1>Liste des teams</h1>
+                    <h1>{{__('info.team-list')}}</h1>
                     @foreach ($teams as $infoteam)
                         <form action="{{ route('keepTeam') }}" method="post" class="inline">
                             @csrf
                             <input type="hidden" name="teamId" value="{{ $infoteam->id }}">
-                            <button type="submit" class="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-gray-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500">Team : {{ $infoteam->name }}</button>
+                            <button type="submit" class="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-gray-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500">{{__('info.team')}}{{ $infoteam->name }}</button>
                         </form>
                         <br>
-                    @endforeach
-
-{{-- 
-                    <h1>Liste des joueurs pas dansla teams</h1>
-                    @foreach ($usersNotInSameTeam as $user)
-                    <a href="addTeam" class="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-gray-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500">Team : {{ $user->name }}</a><br>
-                    <br>
-                    @endforeach --}}
-                    
+                    @endforeach  
 
 
                 </div>

@@ -37,16 +37,17 @@ class TeamController extends Controller
         $user = Auth::user();
         $user->teams()->save($team);
         // $team->belongsToMany(User::class, 'user_team', 'team_id', 'user_id')->attach($user->id);
-        return redirect('/');
+        return view('dashboard');
     }
 
     public function formAddUser(Request $request)
 {
     $userName = $request->input('userName');
     $team_id = $request->input('team_id');
+    $user = Auth::user();
     $userGlobal = User::all();
     $users = User::where('name', $userName)->first();
-
+    $dateEtHeure = date('Y-m-d H:i:s');
     if ($users) {
         // Vérifiez si la relation n'existe pas déjà
         $existingRelation = $users->teams()->where('teams_id', $team_id)->exists();
@@ -71,17 +72,19 @@ class TeamController extends Controller
 
             foreach ($userTeam as $teamMember) {
                 
-                    $teamMember->notify(new TeamNotification($userTeam, $team_id));
+                    $teamMember->notify(new TeamNotification($userTeam, $team_id, $users, $user, $dateEtHeure));
                 
             }
+
+            
             $users->teams()->attach($team_id);
-            return redirect('/')->with('success', 'Utilisateur ajouté à l\'équipe avec succès.');
+            return view('dashboard')->with('success', 'Utilisateur ajouté à l\'équipe avec succès.');
         } else {
             // La relation existe déjà
-            return redirect('/')->with('info', 'L\'utilisateur est déjà dans cette équipe.');
+            return view('dashboard')->with('info', 'L\'utilisateur est déjà dans cette équipe.');
         }
     } else {
-        return redirect('/')->with('error', 'Utilisateur non trouvé.');
+        return view('dashboard')->with('error', 'Utilisateur non trouvé.');
     }
 }
 

@@ -15,12 +15,12 @@
     </head>
     @auth
     <body class="antialiased">
-                    <h1>Création d'une team</h1>
+                    <h1>{{__('create-team.create')}}</h1>
                     <form action="{{route('TeamController')}}" method="post">
                         @csrf
-                            <label for="fname">Nouvelle team</label><br>
+                            <label for="fname">{{__('create-team.new')}}</label><br>
                             <input type="name" id="name" name="name"><br><br>
-                            <input type="submit" value="Submit">
+                            <input type="submit" value="{{__('create-team.submit')}}">
                             @if ($errors->any())
         
         

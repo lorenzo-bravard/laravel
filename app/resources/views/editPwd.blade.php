@@ -15,24 +15,23 @@
     </head>
     @auth
     <body class="antialiased">
-                    <h1>modification du mot de passe</h1>
-                    <form action="{{route('PwdController')}}" method="get">
-                            <label for="fname">Nouveau mot de passe</label><br>
+                    <h1>{{__('edit-pwd.edit')}}</h1>
+                    <form action="{{route('editPwd')}}" method="post">
+                        @csrf
+                            <label for="fname">{{__('edit-pwd.new')}}</label><br>
                             <input type="text" id="mdpEdit" name="mdpEdit"><br><br>
-                            <input type="submit" value="Submit">
+                            <input type="submit" value="{{__('edit-pwd.submit')}}">
                             @if ($errors->any())
-        
-        
-        
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-                        </form>
+
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                    </form>
                   
 
     </body>

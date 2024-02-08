@@ -18,7 +18,7 @@ use App\Http\Controllers\TeamController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome1');
 });
 
 Route::get('/dashboard', function () {
@@ -73,9 +73,9 @@ Route::post('/TeamController', [
 ])->name('TeamController');
 
 
-Route::post('/PwdController', [
+Route::post('/editPwd', [
     PwdController::class, 'editPassword'
-])->name('PwdController');
+])->name('editPwd');
 
 Route::post('/ajoutUser', [
     TeamController::class, 'formAddUser'

@@ -7,8 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Password extends Model
 {
-    protected $mdp = ['password'];
-    use HasFactory;
+
+
+    protected $casts = [
+        'site',
+        'login',
+        'password' => 'encrypted',
+        'user_id'
+    ];
+
+    protected $fillable = ['site', 'login', 'password', 'user_id'];
+
 
     
 }

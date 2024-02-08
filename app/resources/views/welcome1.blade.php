@@ -1,6 +1,10 @@
 <x-guest-layout>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
+    @auth
+        <script>window.location = "{{ route('dashboard') }}";</script>
+    @endauth
+
 
     <form method="POST" action="{{ route('login') }}">
         @csrf
@@ -23,7 +27,7 @@
 
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
-
+       
         <!-- Remember Me -->
         <div class="block mt-4">
             <label for="remember_me" class="inline-flex items-center">

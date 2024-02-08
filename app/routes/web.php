@@ -20,6 +20,9 @@ use App\Http\Controllers\TeamController;
 Route::get('/', function () {
     return view('welcome1');
 });
+Route::get('/login', function () {
+    return view('welcome1');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');

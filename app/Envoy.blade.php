@@ -7,6 +7,8 @@
 @endstory
 
 @task('update-depandencies', ['on' => 'web'])
+    cd lorenzo-bravard.dhonnabhain.me
+    cd app
     composer install 
     npm install
     npm run build
